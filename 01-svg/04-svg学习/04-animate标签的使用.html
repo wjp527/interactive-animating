@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .icon {
+      width: 400px;
+      height: 400px;
+    }
+
+    svg {
+      width: 600px;
+      height: 600px;
+      border: 1px solid black;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="icon">
+    <!-- 
+    viewBox: 画布的大小
+    第一个参数: x轴的最小值
+    第二个参数: y轴的最小值
+    第三个参数: 画布的宽度
+    第四个参数: 画布的高度
+  -->
+    <svg width="600" height="600" viewBox="0 0 600 600" stroke="green" stroke-width="3" fill="none">
+
+      <circle cx="100" cy="100" r="50" fill="red" stroke-width="20" stroke="green">
+
+        <animate attributeName="cx" from="100" to="200" dur="2s" repeatCount="3" fill="freeze" repeatDir="6s" />
+
+      </circle>
+    </svg>
+  </div>
+
+</body>
+
+</html>

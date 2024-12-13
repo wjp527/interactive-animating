@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>描边按钮</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-size: 5vmin;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      background-color: #171717;
+    }
+
+    .button {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.3rem 1rem;
+      border: 0.05rem solid #f7f7f7;
+      border-radius: 2rem;
+      cursor: pointer;
+    }
+
+
+    .button_text {
+      font-family: impact;
+      font-size: 1.2rem;
+      color: #17f700;
+      letter-spacing: 0.05rem;
+      margin-right: 0.5rem;
+    }
+
+    /* JIEJOE produce 
+        b站主页：https://space.bilibili.com/3546390319860710  */
+
+    .button_text {
+      font-family: impact;
+      font-size: 3rem;
+      color: #17f700;
+      letter-spacing: 0.05rem;
+      margin-left: 0.5rem;
+    }
+
+    .button_icon {
+      width: 0.9rem;
+      fill: none;
+      stroke: #17f700;
+      stroke-width: 15;
+      transform: translateY(15%);
+      transition: transform 0.5s ease;
+    }
+
+    .button_icon_straight,
+    .button_icon_blas {
+      transition: stroke-dasharray 0.6s ease;
+    }
+
+    .button_arrow .button_icon_straight {
+      stroke-dasharray: 50 50 200;
+      /* stroke-dashoffset: 140;
+      transition: icon 3s linear infinite; */
+    }
+
+    .button_arrow:hover .button_icon_straight {
+      stroke-dasharray: 150 50 100;
+      /* stroke-dashoffset: 140;
+      transition: icon 3s linear infinite; */
+    }
+
+
+    .button_arrow .button_icon_blas {
+      stroke-dasharray: 205 300 205 300;
+      /* stroke-dashoffset: 200; */
+    }
+
+    .button_cross .button_icon {
+      transform: translateY(-15%);
+    }
+
+    .button_cross .button_icon_straight {
+      stroke-dasharray: 0 300;
+    }
+
+    .button_cross .button_icon_blas {
+      stroke-dasharray: 0 0 400 0;
+    }
+
+    .button_cross:hover .button_icon_blas {
+      stroke-dasharray: 20 60 240 60 20;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="button button_arrow" onclick="change_state(this)">
+    <p class="button_text">STROKE</p>
+
+    <!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <svg viewBox="0 0 283.9 425.8" class="button_icon">
+      <!-- 竖线 -->
+      <line class="button_icon_straight" x1="141.9" y1="-0.1" x2="141.9" y2="283.8" />
+      <!-- 斜线 -->
+      <line class="button_icon_blas" x1="0" y1="141.9" x2="283.9" y2="425.8" />
+      <line class="button_icon_blas" x1="283.9" y1="141.9" x2="0" y2="425.8" />
+    </svg>
+
+  </div>
+</body>
+<script>
+  function change_state(ele) {
+    ele.classList.toggle('button_arrow');
+    ele.classList.toggle('button_cross');
+  }
+</script>
+
+</html>

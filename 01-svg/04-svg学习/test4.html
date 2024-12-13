@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+    }
+
+    .venus_svg {
+      width: 400px;
+      height: 800px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: lemonchiffon;
+
+    }
+
+    .venus_circle {
+      fill: #B20426;
+    }
+
+    .venus_line {
+      fill: none;
+      stroke: #17F700;
+      stroke-width: 10.6454;
+      stroke-linecap: round;
+      stroke-miterlimit: 10;
+    }
+
+    .venus_circle {
+      animation: venus_circle 2s ease infinite;
+    }
+
+    @keyframes venus_circle {
+      0% {
+        fill: #B20426;
+      }
+
+      30% {
+        fill: #17F700;
+      }
+
+      60% {
+        fill: #B20426;
+      }
+
+      90% {
+        fill: #17F700;
+      }
+    }
+
+    /* 线条动画 */
+    .venus_line {
+      stroke-dasharray: 30 30 100;
+      stroke-dashoffset: 300;
+      animation: venus_line 2s ease infinite;
+    }
+
+    @keyframes venus_line {
+      to {
+        stroke-dashoffset: 0;
+      }
+
+    }
+
+    /* 机械臂动画 */
+    .forearm {
+      transform-origin: 159.7px 575.7px;
+      animation: forearm 2s ease infinite;
+    }
+
+    @keyframes forearm {
+      0% {
+        transform: rotate(-10deg);
+      }
+
+      50% {
+        transform: rotate(30deg);
+      }
+
+      100% {
+        transform: rotate(-10deg);
+      }
+    }
+
+
+    .hand {
+      transform-origin: 395.7px 407.6px;
+      animation: hand 2s ease infinite;
+    }
+
+    @keyframes hand {
+      0% {
+        transform: rotate(-15deg);
+      }
+
+      50% {
+        transform: rotate(45deg);
+      }
+
+      100% {
+        transform: rotate(-15deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <svg viewBox="0 0 550 799.7" class="venus_svg">
+      <image href="../03-sve嵌入/venus/venus body.svg" width="550" height="799" />
+
+      <g class="forearm">
+        <image href="../03-sve嵌入/venus/venus forearm.svg" width="550" height="799" />
+        <circle class="venus_circle" cx="214" cy="549.8" r="10.7" />
+        <line class="venus_line" x1="234.8" y1="527.2" x2="362.5" y2="432.8" />
+        <image class="hand" href="../03-sve嵌入/venus/venus hand.svg" width="550" hight="799" />
+      </g>
+
+    </svg>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      background-color: #000;
+    }
+
+    svg {
+      width: 30rem;
+      overflow: visible;
+    }
+
+    line {
+      /* 不填充 */
+      fill: none;
+      /* 描边颜色 */
+      stroke: #17f700;
+      /* 描边宽度 */
+      stroke-width: 2;
+      /* 描边虚线 */
+      stroke-dasharray: 10;
+      /* 描边虚线偏移 */
+      stroke-dashoffset: 10;
+      /* 动画 */
+      animation: lineAnimation 2s linear infinite;
+    }
+
+    @keyframes lineAnimation {
+
+      /* 
+        动画开始位置
+        这里的负数，其实就是向左移动
+      */
+      0% {
+        stroke-dashoffset: -10;
+      }
+
+
+      50% {
+        stroke-dashoffset: 0;
+      }
+
+      /**
+        动画结束位置
+        这里的正数，其实就是向右移动
+      */
+      100% {
+        stroke-dashoffset: 10;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <svg viewBox="0 0 50 50">
+
+    <line x1="0" y1="25" x2="50" y2="25" />
+
+
+  </svg>
+
+</body>
+
+</html>
