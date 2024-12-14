@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll follow sticky</title>
+    <script src="https://unpkg.com/lenis@1.1.16/dist/lenis.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 2vmin;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background-color: #171717;
+        }
+
+        .empty {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 30rem;
+            font-family: sans-serif;
+            font-size: 2rem;
+            color: #171717;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5rem;
+            background-color: #17f700;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 5rem;
+        }
+
+        .container_box {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            width: 100%;
+            height: 100%;
+            background-color: #171717;
+            z-index: 1;
+        }
+
+        .container_box svg {
+            position: sticky;
+            top: 20rem;
+            width: 40rem;
+        }
+
+        .container_box svg text {
+            font-family: sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            fill: none;
+            stroke: #17f700;
+            stroke-width: 1;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+        }
+
+        .container_contents {
+            z-index: 2;
+        }
+
+        .container_contents p {
+            font-family: sans-serif;
+            font-size: 2rem;
+            color: #17f700;
+            margin-bottom: 2rem;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="empty"> keep scroll</div>
+    <div class="empty"> keep scroll</div>
+    <div class="empty"> keep scroll</div>
+    <div class="container">
+        <div class="container_box">
+            <svg viewBox="0 0 170 50">
+                <text class="container_box_text" x="10" y="40"> SCROLL </text>
+            </svg>
+        </div>
+        <div class="container_contents">
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <p>This is the normal scrolling section</p>
+            <br>
+        </div>
+    </div>
+    <div class="empty"> keep scroll</div>
+    <div class="empty"> keep scroll</div>
+    <div class="empty"> keep scroll</div>
+</body>
+<script>
+    // JIEJOE produce
+    // b站主页：https://space.bilibili.com/3546390319860710
+    const sf = {
+        container: document.querySelector(".container"),
+        target: document.querySelector(".container_box"),
+        text: document.querySelector(".container_box_text"),
+        observer: null,
+        distance_scroll: 0,
+        distance_trigger: 0,
+        distance_edge: 0,
+        resize() {
+            this.distance_trigger = this.container.offsetTop;
+            this.distance_edge = this.container.offsetHeight - innerHeight;
+        },
+        observe() {
+            this.observer = new IntersectionObserver((eles) => {
+                if (eles[0].isIntersecting) {
+                    this.reset();
+                    this.create_lister();
+                }
+                else this.remove_lister();
+            });
+            this.observer.observe(this.container);
+        },
+        create_lister() {
+            if (!this.binded_scroll) this.binded_scroll = this.scroll.bind(this);
+            window.addEventListener("scroll", this.binded_scroll);
+        },
+        remove_lister() {
+            window.removeEventListener("scroll", this.binded_scroll);
+        },
+        reset() {
+            if (scrollY < this.distance_trigger) this.distance_scroll = 0;
+            else this.distance_scroll = this.distance_edge;
+            this.text.style.strokeDashoffset = `${150 - (this.distance_scroll / this.distance_edge) * 150}px`;
+        },
+        scroll() {
+            if (scrollY < this.distance_trigger) return this.reset();
+            this.distance_scroll = scrollY - this.distance_trigger;
+            this.distance_scroll = Math.max(0, this.distance_scroll);
+            this.distance_scroll = Math.min(this.distance_edge, this.distance_scroll);
+            this.text.style.strokeDashoffset = `${150 - (this.distance_scroll / this.distance_edge) * 150}px`;
+        },
+        remove() {
+            this.observer.unobserve(this.container);
+            this.observer = null;
+            this.container = null;
+            this.target = null;
+            this.text = null;
+        }
+    };
+    sf.resize();
+    sf.observe();
+    window.addEventListener("resize", sf.resize.bind(sf));
+    const lenis = new Lenis({
+        autoRaf: true,
+    });
+</script>
+
+</html>
